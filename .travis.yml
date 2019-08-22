@@ -27,14 +27,14 @@ before_script:
   - echo no | avdmanager create avd -f -n test -k "system-images;android-24;default;armeabi-v7a"
   - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
   - ./android_wait_for_emulator.sh
-  - adb shell input keyevent 82
+  - adb shell input keyevent 82 &
 
 script:
   # Run the instrumentation tests.
-  - ./gradlew connectedDebugAndroidTest
+  -travis_wait 20 ./gradlew connectedDebugAndroidTest
 
 after_success:
-  - ./.buildscript/deploy_snapshot.sh
+  echo "Build successfully"
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
