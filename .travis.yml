@@ -31,7 +31,7 @@ before_script:
 
 script:
   # Run the instrumentation tests.
-  -travis_wait 20 ./gradlew connectedDebugAndroidTest
+  - travis_wait 20 ./gradlew connectedDebugAndroidTest
 
 after_success:
   echo "Build successfully"
